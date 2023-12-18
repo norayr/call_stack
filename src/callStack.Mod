@@ -44,14 +44,16 @@ BEGIN
 	l.Append(l, c);
 END push;
 
-PROCEDURE runFirst*(lst: clstack; m: Msg);
+PROCEDURE runAllWithMsg*(lst: clstack; m: Msg);
 VAR c: couple;
 	b: BOOLEAN;
 BEGIN
-    c := lst.first;
+  REPEAT
+	  c := lst.first;
 		b := c.r(m);
     IF ~b THEN c.rb END;
-		c
+		c := c.next
+	UNTIL c = NIL
 END run;
 
 END callStack.
